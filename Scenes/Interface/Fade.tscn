@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Fonts/Elektra.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://default_env.tres" type="Environment" id=2]
+[ext_resource path="res://SCRIPTS/Fade.gd" type="Script" id=4]
+[ext_resource path="res://SCENES/Particle_Animation.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SCENES/vortex.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "NewAnimation"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("ColorRect:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("ColorRect:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ColorRect:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("ColorRect:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2, 4, 6, 8 )
+}
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Container" type="Container" parent="."]
+modulate = Color( 0.596078, 0.34902, 0.34902, 1 )
+self_modulate = Color( 0.490196, 0.368627, 0.368627, 1 )
+margin_left = 1.68188
+margin_top = -0.204067
+margin_right = 1025.68
+margin_bottom = 594.796
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+margin_left = 1.0
+margin_right = 1022.0
+margin_bottom = 598.0
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 2.41263
+margin_top = 0.480179
+margin_right = 1018.41
+margin_bottom = 593.48
+color = Color( 0, 0, 0, 0.763335 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "NewAnimation"
+anims/NewAnimation = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 26.2817
+margin_top = 199.74
+margin_right = 363.282
+margin_bottom = 342.74
+rect_scale = Vector2( 2.88744, 1.9096 )
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_constants/shadow_offset_x = 1
+text = "Let's Venture 
+into the 
+dark"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="25" type="Sprite" parent="."]
+position = Vector2( 107.131, 115.048 )
+scale = Vector2( 0.382323, 0.359026 )
+
+[node name="Node2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1.26001, -86.9345 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 84.4147, -115.913 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

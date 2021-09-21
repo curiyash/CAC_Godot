@@ -1,0 +1,325 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/Fonts/VirtualRotRegular-R51V.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/BG images/network stars.jpeg" type="Texture" id=3]
+[ext_resource path="res://assets/BUTTONS/button-musc_off-removebg-preview.png" type="Texture" id=5]
+[ext_resource path="res://assets/BUTTONS/button-music_on-removebg-preview.png" type="Texture" id=6]
+[ext_resource path="res://assets/BUTTONS/close-button-small-icon-removebg-preview.png" type="Texture" id=7]
+[ext_resource path="res://assets/BUTTONS/png-close-button-icon-removebg-preview.png" type="Texture" id=8]
+[ext_resource path="res://SCENES/gameplay.tscn" type="PackedScene" id=9]
+[ext_resource path="res://SCENES/collide.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/Fonts/The Frontman.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://assets/Sprites/mercury.png" type="Texture" id=12]
+[ext_resource path="res://assets/Sprites/earth.png" type="Texture" id=13]
+[ext_resource path="res://assets/Sprites/moon.png" type="Texture" id=14]
+[ext_resource path="res://assets/Sprites/saturn.png" type="Texture" id=15]
+[ext_resource path="res://SCENES/bg anim.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/BUTTONS/B1-removebg-preview.png" type="Texture" id=17]
+[ext_resource path="res://assets/BUTTONS/B2-removebg-preview.png" type="Texture" id=18]
+[ext_resource path="res://assets/music/OutThere.ogg" type="AudioStream" id=19]
+[ext_resource path="res://SCRIPTS/shooting stars.gd" type="Script" id=20]
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+length = 7.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("moon anim/moon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 70.4449, 221.403 ), Vector2( 90.445, 221.403 ), Vector2( 100.445, 221.403 ), Vector2( 110.445, 221.403 ), Vector2( 90.445, 221.403 ), Vector2( 70.445, 221.403 ), Vector2( 50.445, 221.403 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("moon anim/earth:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 45.0, 90.0, 135.0, 185.0, 230.0, 275.0, 345.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("moon anim/Mercury:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 30.0, 0.0, -20.0, 0.0, 20.0, 0.0, -10.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("moon anim/Saturn:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.6, 4.1, 4.6, 5, 5.6, 6.1, 6.6, 7, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 98
+extra_spacing_char = 5
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 94
+extra_spacing_char = 5
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 94
+use_mipmaps = true
+extra_spacing_char = 5
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 80
+outline_size = 6
+font_data = ExtResource( 11 )
+
+[node name="shooting stars" type="Node2D"]
+script = ExtResource( 20 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+margin_top = 1.0
+margin_right = 1027.0
+margin_bottom = 598.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="gameplay2" parent="." instance=ExtResource( 9 )]
+
+[node name="Node2D" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1.41425, -5.65686 )
+
+[node name="moon anim" type="AnimationPlayer" parent="."]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 1 )
+
+[node name="moon" type="Sprite" parent="moon anim"]
+visible = false
+position = Vector2( 70.4449, 221.403 )
+scale = Vector2( 0.385637, 0.353971 )
+texture = ExtResource( 14 )
+
+[node name="earth" type="Sprite" parent="moon anim"]
+visible = false
+position = Vector2( 342.942, 262.091 )
+scale = Vector2( 0.523585, 0.503811 )
+texture = ExtResource( 13 )
+
+[node name="Saturn" type="Sprite" parent="moon anim"]
+visible = false
+light_mask = 32768
+position = Vector2( 921.581, 188.566 )
+scale = Vector2( 0.376123, 0.353971 )
+texture = ExtResource( 15 )
+
+[node name="Mercury" type="Sprite" parent="moon anim"]
+visible = false
+position = Vector2( 682.212, 301.265 )
+scale = Vector2( 0.376123, 0.37062 )
+texture = ExtResource( 12 )
+
+[node name="Node2D" parent="moon anim" instance=ExtResource( 16 )]
+position = Vector2( -26.8701, 0 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 4.0
+margin_top = 384.0
+margin_right = 2859.0
+margin_bottom = 667.0
+rect_scale = Vector2( 0.456766, 0.488967 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Our" type="TextureButton" parent="HBoxContainer"]
+margin_right = 736.0
+margin_bottom = 339.0
+rect_min_size = Vector2( 500, 200 )
+rect_pivot_offset = Vector2( 1, 1 )
+size_flags_stretch_ratio = 2.15
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Our solar system" type="Label" parent="HBoxContainer/Our"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 48.0
+rect_scale = Vector2( 0.773511, 0.670776 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.756863, 0.784314, 0.764706, 1 )
+custom_colors/font_outline_modulate = Color( 0.0313726, 1, 0.968627, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.866667, 1, 1 )
+text = "
+    OUR 
+	   SOLAR SYSTEM"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="HBoxContainer"]
+margin_left = 740.0
+margin_right = 1476.0
+margin_bottom = 339.0
+rect_min_size = Vector2( 500, 200 )
+rect_pivot_offset = Vector2( 1, 1 )
+size_flags_stretch_ratio = 2.15
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer/TextureButton2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 57.0
+rect_scale = Vector2( 0.984939, 0.685452 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.756863, 0.784314, 0.764706, 1 )
+custom_colors/font_outline_modulate = Color( 0.0313726, 1, 0.968627, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.866667, 1, 1 )
+text = " 
+  CREATE 
+YOUR OWN"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="TextureButton" parent="HBoxContainer"]
+margin_left = 1480.0
+margin_right = 2216.0
+margin_bottom = 339.0
+rect_min_size = Vector2( 500, 200 )
+rect_pivot_offset = Vector2( 1, 1 )
+size_flags_stretch_ratio = 2.15
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 17 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="HBoxContainer/TextureButton3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -22.0
+margin_top = -6.0
+margin_right = -22.0
+margin_bottom = 63.0
+rect_scale = Vector2( 1.04181, 0.704625 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.756863, 0.784314, 0.764706, 1 )
+custom_colors/font_outline_modulate = Color( 0.113725, 0.827451, 0.882353, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.964706, 1, 1 )
+text = "
+ LET'S 
+LEARN"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+margin_left = 932.0
+margin_top = 11.5676
+margin_right = 1215.0
+margin_bottom = 268.568
+rect_scale = Vector2( 0.352339, 0.284997 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 5.0
+anchor_top = 5.0
+anchor_right = 5.0
+anchor_bottom = 5.0
+margin_left = 166.0
+margin_top = 61.0
+margin_right = 899.0
+margin_bottom = 312.0
+size_flags_stretch_ratio = 5.0
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/table_vseparation = 5
+custom_constants/shadow_offset_x = 5
+custom_constants/shadow_offset_y = 5
+custom_constants/table_hseparation = 5
+custom_constants/line_separation = 5
+custom_constants/shadow_as_outline = 5
+text = " SPACE GAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="m" type="TextureButton" parent="."]
+margin_left = 833.168
+margin_top = -7.32581
+margin_right = 1333.17
+margin_bottom = 492.674
+rect_min_size = Vector2( 50, 80 )
+rect_scale = Vector2( 0.236443, 0.213825 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 833.168, -7.32581 )
+scale = Vector2( 0.236443, 0.213825 )
+stream = ExtResource( 19 )
+
+[connection signal="pressed" from="HBoxContainer/Our" to="." method="_on_Our_pressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_TextureButton2_pressed"]
+[connection signal="pressed" from="m" to="." method="_on_m_pressed"]

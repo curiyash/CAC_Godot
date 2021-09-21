@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Sprites/406-4062336_2d-rocket-png-transparent-png-removebg.png" type="Texture" id=1]
+[ext_resource path="res://assets/Sprites/floaty_64.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Ignite"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/rocket:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 130, 510 ), Vector2( 340, 400 ), Vector2( 550, 290 ), Vector2( 760, 180 ), Vector2( 970, 90 ), Vector2( 700, 200 ), Vector2( 750, 150 ), Vector2( 800, 100 ), Vector2( 850, 50 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer/rocket:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 52.0, 62.0, 52.0, 42.0, 52.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimationPlayer/Particles2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( -0.1, 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 400, 480 ), Vector2( 110, 535 ), Vector2( 320, 425 ), Vector2( 530, 315 ), Vector2( 740, 205 ), Vector2( 950, 95 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimationPlayer/Particles2D:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 52.0, 62.0, 52.0, 42.0, 52.0 ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.0465116, 0.207483, 0.646259, 0.64966, 0.826531 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.179274, 0.053112, 0.21582, 1, 0.336493, 0.145798, 0.62207, 1, 0.0146637, 0.0387768, 0.121094, 1, 0.70068, 0.70068, 0.70068, 1, 0.189857, 0.0923805, 0.387695, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 4 )
+hue_variation = 1.0
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( -1.18921, 1.52588e-05 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Ignite"
+anims/Ignite = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="AnimationPlayer"]
+modulate = Color( 0.898039, 0.486275, 0.156863, 1 )
+self_modulate = Color( 1, 0.639216, 0.0156863, 1 )
+material = SubResource( 2 )
+position = Vector2( 547.319, 305.928 )
+rotation = 0.995312
+amount = 60
+process_material = SubResource( 5 )
+texture = ExtResource( 2 )
+
+[node name="rocket" type="Sprite" parent="AnimationPlayer"]
+position = Vector2( 567.319, 280.928 )
+rotation = 0.893177
+scale = Vector2( 0.12124, 0.102873 )
+texture = ExtResource( 1 )
